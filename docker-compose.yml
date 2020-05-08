@@ -1,15 +1,15 @@
-version: '3'
+version: '3.2'
 
 services:
   es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: es01
     environment:
       - node.name=es01
       - cluster.name=docker-cluster
       - cluster.initial_master_nodes=es01
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms256M -Xmx256M"
+      - "ES_JAVA_OPTS=-Xms1G -Xmx1G"
       - http.cors.enabled=true
       - http.cors.allow-origin=*
     ulimits:
@@ -20,14 +20,14 @@ services:
       - 9200:9200
 
   es02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: es02
     environment:
       - node.name=es02
       - cluster.name=docker-cluster
       - cluster.initial_master_nodes=es01
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms256M -Xmx256M"
+      - "ES_JAVA_OPTS=-Xms1G -Xmx1G"
       - "discovery.zen.ping.unicast.hosts=es01"
       - http.cors.enabled=true
       - http.cors.allow-origin=*
@@ -39,14 +39,14 @@ services:
       - 9201:9200
 
   es03:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: es03
     environment:
       - node.name=es03
       - cluster.name=docker-cluster
       - cluster.initial_master_nodes=es01
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms256M -Xmx256M"
+      - "ES_JAVA_OPTS=-Xms1G -Xmx1G"
       - "discovery.zen.ping.unicast.hosts=es01"
       - http.cors.enabled=true
       - http.cors.allow-origin=*
