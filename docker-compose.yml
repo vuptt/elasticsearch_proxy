@@ -17,6 +17,10 @@ services:
       - xpack.watcher.enabled=false
       - http.cors.enabled=true
       - http.cors.allow-origin=*
+    volumes:
+      - type: volume
+        source: elasticsearch_data_01
+        target: /usr/share/elasticsearch/data
     ulimits:
       memlock:
         soft: -1
@@ -41,6 +45,10 @@ services:
       - xpack.watcher.enabled=false
       - http.cors.enabled=true
       - http.cors.allow-origin=*
+    volumes:
+      - type: volume
+        source: elasticsearch_data_02
+        target: /usr/share/elasticsearch/data
     ulimits:
       memlock:
         soft: -1
@@ -65,6 +73,10 @@ services:
       - xpack.watcher.enabled=false
       - http.cors.enabled=true
       - http.cors.allow-origin=*
+    volumes:
+      - type: volume
+        source: elasticsearch_data_03
+        target: /usr/share/elasticsearch/data
     ulimits:
       memlock:
         soft: -1
@@ -78,3 +90,8 @@ services:
       - "9600:9600"
     volumes:
       - ./docker/vhost.conf:/etc/nginx/nginx.conf
+
+volumes:
+  elasticsearch_data_01:
+  elasticsearch_data_02:
+  elasticsearch_data_03:
